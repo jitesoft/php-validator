@@ -23,6 +23,7 @@ class Email extends AbstractRule {
      */
     public function __construct() {
         $this->rules[] = Length::class;
+        $this->rules[] = Pattern::class;
     }
 
     /**

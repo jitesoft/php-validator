@@ -21,6 +21,7 @@ class Text extends AbstractRule {
         $this->description = 'Checks so that a value is of string type.';
 
         $this->rules[] = Length::class;
+        $this->rules[] = Pattern::class;
     }
 
     /**

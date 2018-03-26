@@ -16,6 +16,12 @@ class Pattern extends AbstractRule {
     protected $name        = 'pattern';
     protected $description = 'Tests a value against a given regular expression pattern.';
 
+    /**
+     * @internal
+     */
+    public function __construct() {
+    }
+
     protected function testRule($value, array $rules = [], $args = []): bool {
         $pattern = $rules[$this->getName()];
         $result  = preg_match_all($pattern, $value);
