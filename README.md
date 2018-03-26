@@ -96,10 +96,21 @@ graph TD;
 text-->email
 text-->length
 text-->pattern
+
 email-->length
+email-->pattern
+
 length-->max
 length-->min
-email-->pattern
+
+number-->min
+number-->max
+
+float-->min
+float-->max
+
+int-->min
+int-->max
 ```
 
 ## License
