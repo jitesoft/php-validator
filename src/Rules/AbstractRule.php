@@ -6,8 +6,6 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Jitesoft\Validator\Rules;
 
-use function array_map;
-use function array_merge;
 use Jitesoft\Validator\Contracts\RuleInterface;
 
 /**
@@ -23,13 +21,31 @@ abstract class AbstractRule implements RuleInterface {
 
     /** @var null|Factory */
     protected $factory = null;
-    protected $error   = null;
-    protected $rules   = [];
+    /** @var null|string */
+    protected $error = null;
+    /** @var array|RuleInterface[] */
+    protected $rules = [];
 
+    /**
+     * Test the rule.
+     *
+     * @param $value
+     * @param array $rules
+     * @param array $args
+     * @return bool
+     */
     abstract protected function testRule($value, array $rules = [], $args = []): bool;
 
+    /**
+     * Test a value against the given rule.
+     *
+     * @param $value
+     * @param array $rule
+     * @param array $args
+     * @return bool
+     */
     final public function test($value, array $rule, $args = []): bool {
-        $this->error = null;
+        $this->cleanup();
 
         $result = $this->testRule($value, $rule, $args);
         return $result;
@@ -69,6 +85,17 @@ abstract class AbstractRule implements RuleInterface {
      */
     public function getDescription(): string {
         return static::DESCRIPTION;
+    }
+
+    private function cleanup() {
+        $this->error = null;
+        foreach ($this->rules as &$rule) {
+            if (is_string($rule)) {
+                $rule = $this->factory->create($rule);
+            }
+
+            $rule->cleanup();
+        }
     }
 
     /**
