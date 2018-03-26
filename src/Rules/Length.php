@@ -19,6 +19,9 @@ class Length extends AbstractRule {
     protected $description = 'Measures the length of a given value. Has to implement at least one of `min` or `max` '
                            . 'sub';
 
+    /**
+     * @internal
+     */
     public function __construct() {
         $this->rules[] = Minimum::class;
         $this->rules[] = Maximum::class;

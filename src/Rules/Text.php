@@ -13,6 +13,9 @@ namespace Jitesoft\Validator\Rules;
  */
 class Text extends AbstractRule {
 
+    /**
+     * @internal
+     */
     public function __construct() {
         $this->name        = 'text';
         $this->description = 'Checks so that a value is of string type.';

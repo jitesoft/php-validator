@@ -13,9 +13,13 @@ namespace Jitesoft\Validator\Rules;
  */
 class Minimum extends AbstractRule {
 
+    protected $name        = 'min';
+    protected $description = 'Tests a numeric value against a minimum bound.';
+
+    /**
+     * @internal
+     */
     public function __construct() {
-        $this->name        = 'min';
-        $this->description = 'Tests a numeric value against a minimum bound.';
     }
 
     /**

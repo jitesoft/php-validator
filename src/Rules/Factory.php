@@ -15,6 +15,12 @@ class Factory {
 
     protected $rules = [];
 
+    /**
+     * @internal
+     */
+    public function __construct() {
+    }
+
     public function create(string $type) {
         if (array_key_exists($type, $this->rules)) {
             return $this->rules[$type];

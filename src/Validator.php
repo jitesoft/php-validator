@@ -71,12 +71,10 @@ class Validator {
                 $theValue = array_keys($data)[$i];           // We want the data, which is the key of the map.
                 $ruleName = is_array($data[$theValue]) ? array_keys($data[$theValue])[0] : $data[$theValue];
                 $rule     = $this->getRule($ruleName);       // Convert rule into an actual rule.
-
                 if (!$rule->test($theValue, $data[$theValue])) {
                     $this->errors = array_merge($this->errors, $this->rules[$i]->getErrors());
                     throw new ValidationException(array_values($this->errors)[0]);
                 }
-
             } catch (ValidationException $ex) {
                 $result = false;
                 if ($this->throw) {

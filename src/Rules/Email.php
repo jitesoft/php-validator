@@ -18,6 +18,9 @@ class Email extends AbstractRule {
     protected $name        = 'email';
     protected $description = 'Tests a value against a simple email test.';
 
+    /**
+     * @internal
+     */
     public function __construct() {
         $this->rules[] = Length::class;
     }

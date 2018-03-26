@@ -17,6 +17,12 @@ class Maximum extends AbstractRule {
     protected $description = 'Tests a numeric value against a maximum bound.';
 
     /**
+     * @internal
+     */
+    public function __construct() {
+    }
+
+    /**
      * Test a value against the given rule.
      *
      * @param $value

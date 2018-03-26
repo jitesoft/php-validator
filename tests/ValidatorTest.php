@@ -5,6 +5,7 @@
   © - Jitesoft 2018
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Jitesoft\Validator\Tests;
+
 use Jitesoft\Validator\Rules\Text;
 use Jitesoft\Validator\Validator;
 
