@@ -23,7 +23,6 @@ class Number extends AbstractRule {
         $this->rules[] = Maximum::class;
     }
 
-
     /**
      * Test the rule.
      *
@@ -40,4 +39,5 @@ class Number extends AbstractRule {
 
         return true && $this->testSubRules($value, $rules);
     }
+
 }

@@ -39,4 +39,5 @@ class FloatNumber extends AbstractRule {
 
         return true && $this->testSubRules($value, $rules);
     }
+
 }

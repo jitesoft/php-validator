@@ -39,4 +39,5 @@ class Integer extends AbstractRule {
 
         return true && $this->testSubRules($value, $rules);
     }
+
 }
