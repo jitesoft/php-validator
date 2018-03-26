@@ -12,9 +12,8 @@ namespace Jitesoft\Validator\Rules;
  * @version 1.0.0
  */
 class Minimum extends AbstractRule {
-
-    protected $name        = 'min';
-    protected $description = 'Tests a numeric value against a minimum bound.';
+    public const NAME        = 'min';
+    public const DESCRIPTION = 'Tests a numeric value against a minimum bound.';
 
     /**
      * @internal

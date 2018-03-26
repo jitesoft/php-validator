@@ -6,17 +6,14 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Jitesoft\Validator\Rules;
 
-use Jitesoft\Validator\Contracts\RuleInterface;
-
 /**
  * Email
  * @author Johannes Tegnér <johannes@jitesoft.com>
  * @version 1.0.0
  */
 class Email extends AbstractRule {
-
-    protected $name        = 'email';
-    protected $description = 'Tests a value against a simple email test.';
+    public const NAME        = 'email';
+    public const DESCRIPTION = 'Tests a value against a simple email test.';
 
     /**
      * @internal

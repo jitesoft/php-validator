@@ -12,16 +12,16 @@ namespace Jitesoft\Validator\Rules;
  * @version 1.0.0
  */
 class Text extends AbstractRule {
+    public const NAME        = 'text';
+    public const DESCRIPTION = 'Checks so that a value is of string type.';
 
     /**
      * @internal
      */
     public function __construct() {
-        $this->name        = 'text';
-        $this->description = 'Checks so that a value is of string type.';
-
         $this->rules[] = Length::class;
         $this->rules[] = Pattern::class;
+        $this->rules[] = Email::class;
     }
 
     /**

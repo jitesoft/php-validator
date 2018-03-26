@@ -85,6 +85,23 @@ $validator->validate([
 When a validator errors out, it should fetch the error from the given rules and depending on the `throw` param either
 just store it in a error or throw a validation exception.
 
+## Currently implemented rules
+
+Following is a graph of implemented rules and their sub-rule relations.
+Rule names are the actual names, not class names. Check the `src/Rules` directory for class names.
+
+```mermaid
+graph TD;
+
+text-->email
+text-->length
+text-->pattern
+email-->length
+length-->max
+length-->min
+email-->pattern
+```
+
 ## License
 
 MIT.

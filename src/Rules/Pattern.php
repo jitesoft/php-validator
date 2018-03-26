@@ -12,9 +12,8 @@ namespace Jitesoft\Validator\Rules;
  * @version 1.0.0
  */
 class Pattern extends AbstractRule {
-
-    protected $name        = 'pattern';
-    protected $description = 'Tests a value against a given regular expression pattern.';
+    public const NAME        = 'pattern';
+    public const DESCRIPTION = 'Tests a value against a given regular expression pattern.';
 
     /**
      * @internal

@@ -14,10 +14,8 @@ use Countable;
  * @version 1.0.0
  */
 class Length extends AbstractRule {
-
-    protected $name        = 'length';
-    protected $description = 'Measures the length of a given value. Has to implement at least one of `min` or `max` '
-                           . 'sub';
+    public const NAME        = 'length';
+    public const DESCRIPTION = 'Measures the length of a given value. Must use one of `min` or `max` sub rules.';
 
     /**
      * @internal

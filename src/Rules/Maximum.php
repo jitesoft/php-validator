@@ -12,9 +12,8 @@ namespace Jitesoft\Validator\Rules;
  * @version 1.0.0
  */
 class Maximum extends AbstractRule {
-
-    protected $name        = 'max';
-    protected $description = 'Tests a numeric value against a maximum bound.';
+    public const NAME        = 'max';
+    public const DESCRIPTION = 'Tests a numeric value against a maximum bound.';
 
     /**
      * @internal

@@ -18,13 +18,13 @@ use Jitesoft\Validator\Contracts\RuleInterface;
  * Base class for rules.
  */
 abstract class AbstractRule implements RuleInterface {
+    public const NAME        = '';
+    public const DESCRIPTION = '';
 
     /** @var null|Factory */
-    protected $factory     = null;
-    protected $name        = 'nothing';
-    protected $error       = null;
-    protected $rules       = [];
-    protected $description = '';
+    protected $factory = null;
+    protected $error   = null;
+    protected $rules   = [];
 
     abstract protected function testRule($value, array $rules = [], $args = []): bool;
 
@@ -59,7 +59,7 @@ abstract class AbstractRule implements RuleInterface {
      * @return string
      */
     public function getName(): string {
-        return $this->name;
+        return static::NAME;
     }
 
     /**
@@ -68,7 +68,7 @@ abstract class AbstractRule implements RuleInterface {
      * @return string
      */
     public function getDescription(): string {
-        return $this->description;
+        return static::DESCRIPTION;
     }
 
     /**
@@ -77,7 +77,7 @@ abstract class AbstractRule implements RuleInterface {
      * @return string[]
      */
     public function getErrors(): array {
-        $self = $this->error ? [$this->name => $this->error] : [];
+        $self = $this->error ? [get_class($this)::NAME => $this->error] : [];
         return array_merge($self, ...array_map(function($r) {
             if (is_string($r)) {
                 return [];
