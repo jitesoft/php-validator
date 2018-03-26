@@ -4,9 +4,7 @@
     "type": "project",
     "require": {
         "php": ">=7.2",
-        "ext-openssl": ">=7.2",
-        "jitesoft/exceptions": "2.2.*",
-        "jitesoft/loggers": "1.1.*"
+        "jitesoft/exceptions": "2.2.*"
     },
     "license": "mit",
     "authors": [
