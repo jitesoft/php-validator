@@ -64,20 +64,21 @@ Both are optional and the `LengthRule` have optional `MoreThan` and `LessThan` r
 When running the validation, the call could be made with either just a check that the value is a text:
 
 ```php
-$validator->validate('abc123', [ 'text' ]);
+$validator->validate(['abc123' => 'text' ]);
 ```
 
 Or with the use of the sub-rules.
 
 ```php
-$validator->validate('abc123', [
-  'text' => [
-    'length' => [
+$validator->validate([
+  'abc123' => [
+    'text' => [
+      'length' => [
         'lessthan' => 5,
         'morethan' => 2
-    ],
-    'pattern' => '/abc(\d{3})/s'
-  ]
+      ],
+      'pattern' => '/abc(\d{3})/s'
+    ]
 ]);
 ```
 
