@@ -2,6 +2,47 @@
 
 A package for validation of misc values.  
   
+Observe that this is a pre-release, changes could be made to the base API before the first real release that breaks
+any implementation done.  
+If using the validation package before version 1.0.0, be sure to se the constraints on minor version, for example:  
+  
+`"jitesoft/validator": "0.3.*"`
+
+## Usage
+  
+Install package:
+```text
+$> composer require jitesoft/validator
+```
+
+When a validator is needed, create it with a set of rules in the constructor and then call it with the given value/rule
+map that you wish to validate:
+
+```php
+$validator = new Validator(
+  Email::class,
+  Text::class
+);
+
+$result = $validator->validate([
+  'abc@test' => 'email',
+  'hiThere!' => [
+    'text'
+   ],
+   'oh!' => [
+     'text' => [
+       'min' => 4
+     ]
+   ]
+]);
+```
+
+The returned value is a boolean which is true if the data is valid or false if it is not.  
+If false, the `$validator->getErrors()` method will return a list of errors.
+
+By default, the validator will not throw any exceptions. But if this is wanted, set the `$throw` argument (second) of the
+validator constructor to true, and it will throw `ValidationException` instead of returning false.
+
 ## The idea
 
 The idea of the validation structure is that each validation rule can have a set of sub-rules.
@@ -43,3 +84,6 @@ $validator->validate('abc123', [
 When a validator errors out, it should fetch the error from the given rules and depending on the `throw` param either
 just store it in a error or throw a validation exception.
 
+## License
+
+MIT.
