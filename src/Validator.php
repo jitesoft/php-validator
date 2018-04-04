@@ -72,7 +72,7 @@ class Validator {
                 $ruleName = is_array($data[$theValue]) ? array_keys($data[$theValue])[0] : $data[$theValue];
                 $rule     = $this->getRule($ruleName);       // Convert rule into an actual rule.
                 if (!$rule->test($theValue, $data[$theValue])) {
-                    $this->errors = array_merge($this->errors, $this->rules[$i]->getErrors());
+                    $this->errors = array_merge($this->errors, $rule->getErrors());
                     throw new ValidationException(array_values($this->errors)[0]);
                 }
             } catch (ValidationException $ex) {
