@@ -29,9 +29,9 @@ class MinimumTest extends AbstractTestCase {
 
     public function testGetError() {
         $this->rule->test('abc', ['min' => 5]);
-        $this->assertEquals(['min' => 'Value was not numeric.'], $this->rule->getErrors());
+        $this->assertEquals(['min' => 'Value was not numeric.'], $this->rule->popErrors());
         $this->rule->test('4', ['min' => 5]);
-        $this->assertEquals(['min' => 'Value was lower than minimum bounds.'], $this->rule->getErrors());
+        $this->assertEquals(['min' => 'Value was lower than minimum bounds.'], $this->rule->popErrors());
     }
 
     public function testTest() {

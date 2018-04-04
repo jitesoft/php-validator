@@ -29,7 +29,7 @@ class IntegerTest extends AbstractTestCase {
 
     public function testErrors() {
         $this->rule->test('abc', [ 'int' ]);
-        $this->assertEquals(['int' => 'Value was not a integer.'], $this->rule->getErrors());
+        $this->assertEquals(['int' => 'Value was not a integer.'], $this->rule->popErrors());
     }
 
     public function testTest() {

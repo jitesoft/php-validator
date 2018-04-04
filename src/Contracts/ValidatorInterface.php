@@ -14,13 +14,11 @@ namespace Jitesoft\Validator\Contracts;
 interface ValidatorInterface {
 
     /**
-     * @param array $values Values to validate.
-     * @param array $rules Rules to validate values with.
-     * @param array $messages Messages to return if invalid, defaults to rules default message.
-     * @param bool $throw If the validator should throw an exception or not.
+     * @param string|array $rules Rules to validate values with.
+     * @param mixed        $data  Data to validate.
      * @return bool
      */
-    public function validate(array $values, array $rules, array $messages = [], bool $throw = false): bool;
+    public function validate($rules, $data): bool;
 
     /**
      * @return array|RuleInterface[]

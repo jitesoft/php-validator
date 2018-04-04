@@ -28,7 +28,7 @@ class LengthTest extends AbstractTestCase {
 
     public function testErrors() {
         $this->rule->test(false, [ 'length' ]);
-        $this->assertEquals(['length' => 'Can not measure length. Unknown value type.'], $this->rule->getErrors());
+        $this->assertEquals(['length' => 'Can not measure length. Unknown value type.'], $this->rule->popErrors());
     }
 
     public function testTest() {

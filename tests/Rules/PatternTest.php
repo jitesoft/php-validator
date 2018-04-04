@@ -27,7 +27,7 @@ class PatternTest extends AbstractTestCase {
 
     public function testGetError() {
         $this->rule->test('abc', ['pattern' => '/abc(\d{3})/i']);
-        $this->assertEquals(['pattern' => 'Value did not match supplied pattern.'], $this->rule->getErrors());
+        $this->assertEquals(['pattern' => 'Value did not match supplied pattern.'], $this->rule->popErrors());
     }
 
     public function testTest() {

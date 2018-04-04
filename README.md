@@ -15,32 +15,91 @@ Install package:
 $> composer require jitesoft/validator
 ```
 
-When a validator is needed, create it with a set of rules in the constructor and then call it with the given value/rule
-map that you wish to validate:
+When creating a validator, the available rules need to be set in the constructor. That way the validator knows which
+rules it can use and can create them when needed.
 
 ```php
 $validator = new Validator(
   Email::class,
   Text::class
 );
+```
 
-$result = $validator->validate([
-  'abc@test' => 'email',
-  'hiThere!' => [
-    'text'
-   ],
-   'oh!' => [
-     'text' => [
-       'min' => 4
-     ]
-   ]
+There are multiple ways to validate data, the following snippets are all valid:
+
+Single validation with single rule:
+
+```php
+$validator->validate('text', 'abc123');
+```
+
+Single validation with deep rules:
+
+```php
+$validator->validate(['text' => ['pattern' => '/?.*/' ], 'abc123');
+```
+
+Multiple rules and values in indexed arrays:
+
+```php
+$validator->validate([
+    'text',
+    'number'
+], [
+    'abc',
+    123
 ]);
 ```
 
-The returned value is a boolean which is true if the data is valid or false if it is not.  
-If false, the `$validator->getErrors()` method will return a list of errors.
+Multiple deep rules with indexed array of values:
 
-By default, the validator will not throw any exceptions. But if this is wanted, set the `$throw` argument (second) of the
+```php
+$validator->validate([
+    'text' => [
+        'pattern' => '/?.*/'
+    ],
+    'number' => [
+        'max' => 200
+    ]
+], [
+    'abc',
+    123
+]);
+```
+
+Named tests with named values:
+
+```php
+$validator->validate([
+    'first' => [ 
+        'text' => [ 
+            'pattern' => '/?.*/' 
+        ]
+    ],
+    'second' => 'number'
+], [
+  'second' => 123,
+  'first' => 'abc123'
+]);
+```
+
+Named test on indexed array.
+
+```php
+$validator->validate([
+    'first' => [ 
+        'text' => [ 
+            'pattern' => '/?.*/' 
+        ]
+    ],
+    'second' => 'number'
+], [ 'abc', 123 ]);
+```
+
+The returned value is a boolean which is true if the data is valid or false if it is not.  
+If false, the `$validator->getErrors()` method will return the errors of the validation tests.
+
+By default, the validator will not throw any exceptions. But if this is wanted, set the `$throw` argument of the
 validator constructor to true, and it will throw `ValidationException` instead of returning false.
 
 ## The idea
@@ -59,27 +118,17 @@ LengthRule-- optional -->LessThanRule;
 TextRule-- optional -->PatternRule;
 ```
 
-In the above example structure, the `TextRule` have two sub rules, the `LengthRule` and the `PatternRule`.  
-Both are optional and the `LengthRule` have optional `MoreThan` and `LessThan` rules.  
-When running the validation, the call could be made with either just a check that the value is a text:
-
-```php
-$validator->validate(['abc123' => 'text' ]);
-```
-
-Or with the use of the sub-rules.
-
 ```php
 $validator->validate([
-  'abc123' => [
+  'Test' => [
     'text' => [
       'length' => [
-        'lessthan' => 5,
-        'morethan' => 2
+        'max' => 5,
+        'min' => 2
       ],
       'pattern' => '/abc(\d{3})/s'
     ]
-]);
+], 'abc123');
 ```
 
 When a validator errors out, it should fetch the error from the given rules and depending on the `throw` param either
@@ -112,6 +161,39 @@ float-->max
 int-->min
 int-->max
 ```
+
+## Changes
+
+### 0.1.0
+
+#### Validation calls
+
+Updated validation function call. It now takes rules as first argument and values as second.  
+The rules can either be a single string to test a single value, an array of strings testing an array of values or 
+an associative array with Test names which defines rules and tests either a list of values or a matching assoc array of values.
+
+
+#### Errors
+
+The errors are now associative arrays which have the 'test name' as a key then each rules and their errors as a key-value pair
+under each test name.  
+The rules and errors are flattened, so the depth is always the same:
+
+```php
+$errors = [
+  'TestName1' => [
+    'text' => 'some error'
+  ],
+  'TestName2' => [
+    'min' => 'Some error',
+    'max' => 'Some error',
+    'pattern' => 'Some other error.'
+  ]
+]
+```
+
+Input is wanted on the flattened array. Should it be flattened or should it have a new depth for each rule name?
+
 
 ## License
 

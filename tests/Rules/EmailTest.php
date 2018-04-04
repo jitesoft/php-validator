@@ -34,7 +34,7 @@ class EmailTest extends AbstractTestCase {
 
     public function testGetError() {
         $this->rule->test('abc', []);
-        $this->assertEquals(['email' => 'abc is not a valid email address.'], $this->rule->getErrors());
+        $this->assertEquals(['email' => 'abc is not a valid email address.'], $this->rule->popErrors());
     }
 
     public function testTest() {
@@ -79,7 +79,7 @@ class EmailTest extends AbstractTestCase {
         $this->assertEquals([
             'email' => 'abc is not a valid email address.',
             'min' => 'Value was lower than minimum bounds.'
-        ], $this->rule->getErrors());
+        ], $this->rule->popErrors());
 
         $this->assertFalse($this->rule->test('abc', [
             'email' => [
@@ -94,7 +94,7 @@ class EmailTest extends AbstractTestCase {
         $this->assertEquals([
             'email' => 'abc is not a valid email address.',
             'max' => 'Value was higher than maximum bounds.'
-        ], $this->rule->getErrors());
+        ], $this->rule->popErrors());
     }
 
 }

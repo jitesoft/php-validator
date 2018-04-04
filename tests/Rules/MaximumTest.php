@@ -27,9 +27,9 @@ class MaximumTest extends AbstractTestCase {
 
     public function testGetError() {
         $this->rule->test('asd', ['max' => 1]);
-        $this->assertEquals(['max' => 'Value was not numeric.'], $this->rule->getErrors());
+        $this->assertEquals(['max' => 'Value was not numeric.'], $this->rule->popErrors());
         $this->rule->test(5, ['max' => 4]);
-        $this->assertEquals(['max' => 'Value was higher than maximum bounds.'], $this->rule->getErrors());
+        $this->assertEquals(['max' => 'Value was higher than maximum bounds.'], $this->rule->popErrors());
     }
 
     public function testTest() {

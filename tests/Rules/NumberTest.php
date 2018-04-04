@@ -29,11 +29,11 @@ class NumberTest extends AbstractTestCase {
 
     public function testErrors() {
         $this->rule->test('nan', ['number']);
-        $this->assertEquals(['number' => 'Value was not a number.'], $this->rule->getErrors());
+        $this->assertEquals(['number' => 'Value was not a number.'], $this->rule->popErrors());
         $this->rule->test(123, ['number' => [ 'min' => 124 ]]);
-        $this->assertEquals(['min' => 'Value was lower than minimum bounds.'], $this->rule->getErrors());
+        $this->assertEquals(['min' => 'Value was lower than minimum bounds.'], $this->rule->popErrors());
         $this->rule->test(300, ['number' => [ 'max' => 100 ]]);
-        $this->assertEquals(['max' => 'Value was higher than maximum bounds.'], $this->rule->getErrors());
+        $this->assertEquals(['max' => 'Value was higher than maximum bounds.'], $this->rule->popErrors());
     }
 
     public function testTest() {

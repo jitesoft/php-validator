@@ -28,7 +28,7 @@ class FloatNumberTest extends AbstractTestCase {
 
     public function testErrors() {
         $this->rule->test('adsdas', [ 'float' ]);
-        $this->assertEquals(['float' => 'Value was no a float.'], $this->rule->getErrors());
+        $this->assertEquals(['float' => 'Value was no a float.'], $this->rule->popErrors());
     }
 
     public function testTest() {

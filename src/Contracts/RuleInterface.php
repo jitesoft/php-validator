@@ -36,11 +36,11 @@ interface RuleInterface {
     public function getDescription(): string;
 
     /**
-     * Get error messages if any.
+     * Get and empty errors if any.
      *
-     * @return string[]
+     * @return array|string[]
      */
-    public function getErrors(): array;
+    public function popErrors(): array;
 
     /**
      * Test a value against the given rule.
