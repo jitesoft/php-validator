@@ -6,8 +6,6 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Jitesoft\Validator;
 
-use function array_key_exists;
-use function is_array;
 use Jitesoft\Exceptions\Validation\ValidationException;
 use Jitesoft\Validator\Contracts\RuleInterface;
 use Jitesoft\Validator\Contracts\ValidatorInterface;
@@ -67,6 +65,7 @@ class Validator implements ValidatorInterface {
         if (is_array($value)) {
             return $value;
         }
+
         return [$value];
     }
 
@@ -81,6 +80,7 @@ class Validator implements ValidatorInterface {
         if ($this->throw) {
             throw new ValidationException($message);
         }
+
         return false;
     }
 
@@ -143,6 +143,7 @@ class Validator implements ValidatorInterface {
                 foreach ($errorList as $testName => $errorMessage) {
                     $this->errors->add($ruleName, $testName, $errorMessage);
                 }
+
                 $result = false;
                 continue;
             }
@@ -164,4 +165,5 @@ class Validator implements ValidatorInterface {
             }
         }, $this->rules);
     }
+
 }

@@ -111,7 +111,6 @@ abstract class AbstractRule implements RuleInterface {
         }, $this->rules));
     }
 
-
     /**
      * @param $value
      * @param $rules
