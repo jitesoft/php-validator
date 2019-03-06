@@ -6,7 +6,7 @@ Observe that this is a pre-release, changes could be made to the base API before
 any implementation done.  
 If using the validation package before version 1.0.0, be sure to se the constraints on minor version, for example:  
   
-`"jitesoft/validator": "0.3.*"`
+`"jitesoft/validator": "0.1.*"`
 
 ## Usage
   

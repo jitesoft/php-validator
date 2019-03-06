@@ -1,2 +1,5 @@
 *.iml
 vendor/
+clover.xml
+.phpunit.result.cache
+.idea/

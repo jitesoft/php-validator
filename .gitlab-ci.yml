@@ -1,9 +1,41 @@
-before_script:
-  - composer install --no-interaction --prefer-source
+include:
+  - https://gitlab.com/jitesoft/gitlab-ci-lib/raw/master/code_quality.yml
+  - https://gitlab.com/jitesoft/gitlab-ci-lib/raw/master/dependency_scanning.yml
 
-Test:
-  stage: test
-  image: jitesoft/composer:7.2
+stages:
+  - build
+  - test
+  - scan
+
+build:
+  stage: build
+  image: jitesoft/composer
+  variables:
   script:
-    - vendor/bin/phpunit tests/
-    - vendor/bin/phpcs -p --report=summary --standard=style.xml src
+    - composer install --prefer-dist --no-progress
+  artifacts:
+    paths:
+      - vendor/
+    expire_in: 30 minutes
+
+test:
+  stage: test
+  image: jitesoft/composer:latest
+  dependencies:
+    - build
+  script:
+    - vendor/bin/phpunit tests/ --coverage-text --colors=never --whitelist=src/ 
+
+test:style:
+  stage: test
+  image: jitesoft/composer:latest
+  dependencies:
+    - build
+  script:
+    - vendor/bin/phpcs -p ./src --report=summary --standard=./style.xml
+
+scan:dep: 
+  extends: .dependency_scanning
+
+scan:code:
+  extends: .code_quality
