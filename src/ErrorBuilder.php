@@ -27,11 +27,13 @@ final class ErrorBuilder {
     /**
      * Add a error.
      *
-     * @param string $name
-     * @param string $rule
-     * @param string $error
+     * @param string $name  Name of the error.
+     * @param string $rule  Rule error was encountered on.
+     * @param string $error Error message.
+     * @return void
+     * @since 1.0.0
      */
-    public function add(string $name, string $rule, string $error) {
+    public function add(string $name, string $rule, string $error): void {
         if (!array_key_exists($name, $this->errors)) {
             $this->errors[$name] = [];
         }
@@ -50,6 +52,7 @@ final class ErrorBuilder {
      * Get the errors as an array.
      *
      * @return array
+     * @since 1.0.0
      */
     public function toArray() {
         return $this->errors;

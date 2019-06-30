@@ -1,4 +1,5 @@
 <?php
+// phpcs:ignoreFile
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
   Pattern.php - Part of the validator project.
 
@@ -21,7 +22,18 @@ class Pattern extends AbstractRule {
     public function __construct() {
     }
 
-    protected function testRule($value, array $rules = [], $args = []): bool {
+    /**
+     * Test the rule.
+     *
+     * @param mixed $value Value to validate.
+     * @param array $rules Rules to apply.
+     * @param array $args  Arguments.
+     * @return boolean
+     * @since 1.0.0
+     */
+    protected function testRule($value,
+                                array $rules = [],
+                                array $args = []): bool {
         $pattern = $rules[$this->getName()];
         $result  = preg_match_all($pattern, $value);
         if ($result === false || $result === 0) {

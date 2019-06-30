@@ -29,33 +29,39 @@ abstract class AbstractRule implements RuleInterface {
     /**
      * Test the rule.
      *
-     * @param $value
-     * @param array $rules
-     * @param array $args
-     * @return bool
+     * @param mixed $value Value to validate.
+     * @param array $rules Rules to apply.
+     * @param array $args  Arguments.
+     * @return boolean
+     * @since 1.0.0
      */
-    abstract protected function testRule($value, array $rules = [], $args = []): bool;
+    abstract protected function testRule($value,
+                                         array $rules = [],
+                                         array $args = []): bool;
 
     /**
-     * Test a value against the given rule.
+     * Test a value against the given.
      *
-     * @param $value
-     * @param array $rule
-     * @param array $args
-     * @return bool
+     * @param mixed $value Value to validate.
+     * @param array $rules Rules to apply.
+     * @param array $args  Arguments.
+     * @return boolean
+     * @since 1.0.0
      */
-    final public function test($value, array $rule, $args = []): bool {
+    final public function test($value, array $rules, array $args = []): bool {
         $this->cleanup();
 
-        $result = $this->testRule($value, $rule, $args);
+        $result = $this->testRule($value, $rules, $args);
         return $result;
     }
 
     /**
-     * @param Factory $factory
+     * @param Factory $factory Factory to use when building rules.
+     * @return void
      * @internal
+     * @since 1.0.0
      */
-    public function setFactory(Factory $factory) {
+    public function setFactory(Factory $factory): void {
         $this->factory = $factory;
     }
 
@@ -64,6 +70,7 @@ abstract class AbstractRule implements RuleInterface {
      * sure that
      *
      * @return array|RuleInterface[]
+     * @since 1.0.0
      */
     public function getSubRules(): array {
         return $this->rules;
@@ -73,6 +80,7 @@ abstract class AbstractRule implements RuleInterface {
      * Get the name of the rule.
      *
      * @return string
+     * @since 1.0.0
      */
     public function getName(): string {
         return static::NAME;
@@ -82,12 +90,17 @@ abstract class AbstractRule implements RuleInterface {
      * Get the description of the rule.
      *
      * @return string
+     * @since 1.0.0
      */
     public function getDescription(): string {
         return static::DESCRIPTION;
     }
 
-    private function cleanup() {
+    /**
+     * Cleans up the rule.
+     * @return void
+     */
+    private function cleanup(): void {
         $this->error = null;
         foreach ($this->rules as &$rule) {
             if (is_string($rule)) {
@@ -98,8 +111,16 @@ abstract class AbstractRule implements RuleInterface {
         }
     }
 
+    /**
+     * Get and empty errors if any.
+     *
+     * @return array|string[]
+     * @since 1.0.0
+     */
     public function popErrors(): array {
-        $self        = $this->error ? [get_class($this)::NAME => $this->error] : [];
+        $self        = $this->error ? [
+            get_class($this)::NAME => $this->error
+        ] : [];
         $this->error = null;
         return array_merge($self, ...array_map(function($r) {
             if (is_string($r)) {
@@ -112,12 +133,13 @@ abstract class AbstractRule implements RuleInterface {
     }
 
     /**
-     * @param $value
-     * @param $rules
-     * @param array ...$arguments
-     * @return bool
+     * @param mixed       $value        Value to validate.
+     * @param array       $rules        Rules to validate with.
+     * @param array|mixed ...$arguments Argument list.
+     * @return boolean
+     * @since 1.0.0
      */
-    protected function testSubRules($value, $rules, ...$arguments) {
+    protected function testSubRules($value, array $rules, ...$arguments) {
         if (!array_key_exists($this->getName(), $rules)) {
             return true; // No sub-rules to be tested.
         }

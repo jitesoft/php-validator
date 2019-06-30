@@ -1,4 +1,5 @@
 <?php
+// phpcs:ignoreFile
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
   Text.php - Part of the validator project.
 
@@ -25,14 +26,17 @@ class Text extends AbstractRule {
     }
 
     /**
-     * Test a value against the given rule.
+     * Test the rule.
      *
-     * @param $value
-     * @param array $rules
-     * @param array $args
-     * @return bool
+     * @param mixed $value Value to validate.
+     * @param array $rules Rules to apply.
+     * @param array $args  Arguments.
+     * @return boolean
+     * @since 1.0.0
      */
-    protected function testRule($value, array $rules = [], $args = []): bool {
+    protected function testRule($value,
+                                array $rules = [],
+                                array $args = []): bool {
         if (!is_string($value)) {
             $this->error = 'Value was not a string.';
             return false;

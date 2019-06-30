@@ -1,4 +1,5 @@
 <?php
+// phpcs:ignoreFile
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
   Length.php - Part of the validator project.
 
@@ -26,14 +27,17 @@ class Length extends AbstractRule {
     }
 
     /**
-     * Test a value against the given rule.
+     * Test the rule.
      *
-     * @param $value
-     * @param array $rules
-     * @param array $args
-     * @return bool
+     * @param mixed $value Value to validate.
+     * @param array $rules Rules to apply.
+     * @param array $args  Arguments.
+     * @return boolean
+     * @since 1.0.0
      */
-    protected function testRule($value, array $rules = [], $args = []): bool {
+    protected function testRule($value,
+                                array $rules = [],
+                                array $args = []): bool {
         $result = true;
         if (is_string($value)) {
             $length = mb_strlen($value);

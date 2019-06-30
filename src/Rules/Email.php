@@ -1,4 +1,5 @@
 <?php
+// phpcs:ignoreFile
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
   Email.php - Part of the validator project.
 
@@ -24,14 +25,17 @@ class Email extends AbstractRule {
     }
 
     /**
-     * Test a value against the given rule.
+     * Test the rule.
      *
-     * @param $value
-     * @param array $rules
-     * @param array $args
-     * @return bool
+     * @param mixed $value Value to validate.
+     * @param array $rules Rules to apply.
+     * @param array $args  Arguments.
+     * @return boolean
+     * @since 1.0.0
      */
-    protected function testRule($value, array $rules = [], $args = []): bool {
+    protected function testRule($value,
+                                array $rules = [],
+                                array $args = []): bool {
         $result = true;
         if (mb_strpos($value, '@') === false) {
             $this->error = sprintf('%s is not a valid email address.', $value);
