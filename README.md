@@ -142,6 +142,8 @@ Rule names are the actual names, not class names. Check the `src/Rules` director
 ```mermaid
 graph TD;
 
+boolean
+
 text-->email
 text-->length
 text-->pattern
