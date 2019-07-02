@@ -5,8 +5,8 @@
     "require": {
         "php": ">=7.3",
         "ext-json": "*",
-        "jitesoft/exceptions": "2.*",
-        "ext-mbstring": "*"
+        "ext-mbstring": "*",
+        "jitesoft/exceptions": "2.*"
     },
     "license": "mit",
     "authors": [
