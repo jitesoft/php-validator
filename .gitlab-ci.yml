@@ -10,7 +10,6 @@ stages:
 build:
   stage: build
   image: jitesoft/composer
-  variables:
   script:
     - composer install --prefer-dist --no-progress
   artifacts:
@@ -24,18 +23,11 @@ test:
   dependencies:
     - build
   script:
-    - vendor/bin/phpunit tests/ --coverage-text --colors=never --whitelist=src/ 
-
-test:style:
-  stage: test
-  image: jitesoft/composer:latest
-  dependencies:
-    - build
-  script:
+    - vendor/bin/phpunit tests/ --coverage-text --colors=never --whitelist=src/
     - vendor/bin/phpcs -p ./src --report=summary --standard=./style.xml
 
-scan:dep: 
-  extends: .dependency_scanning
+scan:dep:
+  extends: .scan:composer
 
 scan:code:
   extends: .code_quality
