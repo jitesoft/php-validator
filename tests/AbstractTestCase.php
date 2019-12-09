@@ -20,7 +20,7 @@ abstract class AbstractTestCase extends TestCase {
     /** @var Generator */
     protected $faker;
 
-    protected function setUp() {
+    protected function setUp(): void {
         parent::setUp();
 
         $this->faker = Factory::create();

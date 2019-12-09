@@ -38,7 +38,6 @@ class Factory {
             return $this->rules[$type];
         }
 
-        /** @var AbstractRule $t */
         $t = new $type();
         $t->setFactory($this);
         $this->rules[$type] = $t;

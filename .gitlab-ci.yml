@@ -1,41 +1,23 @@
 include:
-  - https://gitlab.com/jitesoft/gitlab-ci-lib/raw/master/code_quality.yml
   - https://gitlab.com/jitesoft/gitlab-ci-lib/raw/master/dependency_scanning.yml
 
 stages:
-  - build
   - test
   - scan
 
-build:
-  stage: build
-  image: jitesoft/composer
-  variables:
+test:7.3:
+  stage: test
+  image: registry.gitlab.com/jitesoft/dockerfiles/phpunit:7.3
   script:
     - composer install --prefer-dist --no-progress
-  artifacts:
-    paths:
-      - vendor/
-    expire_in: 30 minutes
+    - composer test
 
-test:
+test:7.4:
   stage: test
-  image: jitesoft/composer:latest
-  dependencies:
-    - build
+  image: registry.gitlab.com/jitesoft/dockerfiles/phpunit:7.4
   script:
-    - vendor/bin/phpunit tests/ --coverage-text --colors=never --whitelist=src/ 
+    - composer install --prefer-dist --no-progress
+    - composer test
 
-test:style:
-  stage: test
-  image: jitesoft/composer:latest
-  dependencies:
-    - build
-  script:
-    - vendor/bin/phpcs -p ./src --report=summary --standard=./style.xml
-
-scan:dep: 
-  extends: .dependency_scanning
-
-scan:code:
-  extends: .code_quality
+scan:
+  extends: .scan:composer

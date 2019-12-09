@@ -122,14 +122,17 @@ abstract class AbstractRule implements RuleInterface {
             get_class($this)::NAME => $this->error
         ] : [];
         $this->error = null;
-        return array_merge($self, ...array_map(function($r) {
-            if (is_string($r)) {
-                return [];
-            }
+        return array_merge(
+            $self, ...array_map(
+                function($r) {
+                    if (is_string($r)) {
+                        return [];
+                    }
 
-            /** @var $r RuleInterface */
-            return $r->popErrors();
-        }, $this->rules));
+                    return $r->popErrors();
+                }, $this->rules
+            )
+        );
     }
 
     /**
