@@ -12,10 +12,6 @@ build:
   image: jitesoft/composer
   script:
     - composer install --prefer-dist --no-progress
-  artifacts:
-    paths:
-      - vendor/
-    expire_in: 30 minutes
 
 test:
   stage: test
