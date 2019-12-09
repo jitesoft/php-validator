@@ -19,7 +19,7 @@ use Jitesoft\Validator\Rules\Factory;
  */
 class Validator implements ValidatorInterface {
 
-    /** @var bool */
+    /** @var boolean */
     protected $throw;
     /** @var array|RuleInterface[]  */
     protected $rules;
@@ -162,9 +162,9 @@ class Validator implements ValidatorInterface {
             if (is_string($ruleList)) {
                 $first = $ruleList;
             } else if (array_keys($ruleList) !== range(
-                    0,
-                    count($ruleList) - 1
-                )
+                0,
+                count($ruleList) - 1
+            )
             ) {
                 $first = array_keys($ruleList)[0];
             } else {
@@ -187,7 +187,8 @@ class Validator implements ValidatorInterface {
             // a string, nothing should be passed (empty array), cause then it's not supposed to be recursive.
             if (!$rule->test(
                 $testValue,
-                is_string($ruleList) ? [] : $ruleList)
+                is_string($ruleList) ? [] : $ruleList
+            )
             ) {
                 // On failure, get the rule and the sub-rules errors. Add it to the error builder and jump to next test.
                 $errorList = $rule->popErrors();
@@ -211,13 +212,15 @@ class Validator implements ValidatorInterface {
      * @since 1.0.0
      */
     public function getAvailableRules(): array {
-        return array_map(function($rule) {
-            if (is_string($rule)) {
-                return $rule;
-            } else {
-                return $rule::NAME;
-            }
-        }, $this->rules);
+        return array_map(
+            function($rule) {
+                if (is_string($rule)) {
+                    return $rule;
+                } else {
+                    return $rule::NAME;
+                }
+            }, $this->rules
+        );
     }
 
 }
