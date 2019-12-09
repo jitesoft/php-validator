@@ -21,7 +21,7 @@ class LengthTest extends AbstractTestCase {
     /** @var RuleInterface */
     protected $rule;
 
-    public function setUp() {
+    public function setUp(): void {
         parent::setUp();
         $this->rule = (new Factory())->create(Length::class);
     }

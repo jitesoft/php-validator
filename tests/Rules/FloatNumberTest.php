@@ -21,7 +21,7 @@ class FloatNumberTest extends AbstractTestCase {
     /** @var RuleInterface */
     protected $rule;
 
-    protected function setUp() {
+    protected function setUp(): void {
         parent::setUp();
         $this->rule = (new Factory())->create(FloatNumber::class);
     }
