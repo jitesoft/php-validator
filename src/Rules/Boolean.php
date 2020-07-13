@@ -1,12 +1,10 @@
 <?php
-// phpcs:ignoreFile
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
   Boolean.php - Part of the validator project.
 
   © - Jitesoft 2019
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Jitesoft\Validator\Rules;
-
 
 class Boolean extends AbstractRule {
     public const NAME        = 'boolean';
@@ -28,7 +26,8 @@ class Boolean extends AbstractRule {
             $result = false;
         }
 
-        return $this->testSubRules($value, $rules) && $result;
+        return $this->testSubRules($value, $rules, ...$args)
+            && $result;
     }
 
 }

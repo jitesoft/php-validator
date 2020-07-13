@@ -1,5 +1,4 @@
 <?php
-// phpcs:ignoreFile
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
   Number.php - Part of the validator project.
 
@@ -41,7 +40,7 @@ class Number extends AbstractRule {
             return false;
         }
 
-        return true && $this->testSubRules($value, $rules);
+        return true && $this->testSubRules($value, $rules, ...$args);
     }
 
 }

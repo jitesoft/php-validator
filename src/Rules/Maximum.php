@@ -1,5 +1,4 @@
 <?php
-// phpcs:ignoreFile
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
   Maximum.php - Part of the validator project.
 

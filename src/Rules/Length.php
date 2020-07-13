@@ -1,5 +1,4 @@
 <?php
-// phpcs:ignoreFile
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
   Length.php - Part of the validator project.
 
@@ -49,7 +48,7 @@ class Length extends AbstractRule {
             $length      = -1;
         }
 
-        return $result && $this->testSubRules($length, $rules);
+        return $result && $this->testSubRules($length, $rules, ...$args);
     }
 
 }

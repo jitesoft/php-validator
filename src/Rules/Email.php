@@ -1,5 +1,4 @@
 <?php
-// phpcs:ignoreFile
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
   Email.php - Part of the validator project.
 
@@ -42,7 +41,7 @@ class Email extends AbstractRule {
             $result      = false;
         }
 
-        return $this->testSubRules($value, $rules) && $result;
+        return $this->testSubRules($value, $rules, ...$args) && $result;
     }
 
 }
