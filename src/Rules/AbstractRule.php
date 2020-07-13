@@ -16,15 +16,12 @@ use Jitesoft\Validator\Contracts\RuleInterface;
  * Base class for rules.
  */
 abstract class AbstractRule implements RuleInterface {
-    public const NAME        = '';
-    public const DESCRIPTION = '';
-
-    /** @var null|Factory */
-    protected $factory = null;
-    /** @var null|string */
-    protected $error = null;
-    /** @var array|RuleInterface[] */
-    protected $rules = [];
+    /** @var RuleInterface[] */
+    protected array $rules      = [];
+    public const NAME           = '';
+    public const DESCRIPTION    = '';
+    protected ?Factory $factory = null;
+    protected ?string $error    = null;
 
     /**
      * Test the rule.
@@ -51,8 +48,7 @@ abstract class AbstractRule implements RuleInterface {
     final public function test($value, array $rules, array $args = []): bool {
         $this->cleanup();
 
-        $result = $this->testRule($value, $rules, $args);
-        return $result;
+        return $this->testRule($value, $rules, $args);
     }
 
     /**
@@ -100,7 +96,7 @@ abstract class AbstractRule implements RuleInterface {
      * Cleans up the rule.
      * @return void
      */
-    private function cleanup(): void {
+    protected function cleanup(): void {
         $this->error = null;
         foreach ($this->rules as &$rule) {
             if (is_string($rule)) {
@@ -124,7 +120,7 @@ abstract class AbstractRule implements RuleInterface {
         $this->error = null;
         return array_merge(
             $self, ...array_map(
-                function($r) {
+                static function($r) {
                     if (is_string($r)) {
                         return [];
                     }
@@ -142,7 +138,7 @@ abstract class AbstractRule implements RuleInterface {
      * @return boolean
      * @since 1.0.0
      */
-    protected function testSubRules($value, array $rules, ...$arguments) {
+    protected function testSubRules($value, array $rules, ...$arguments): bool {
         if (!array_key_exists($this->getName(), $rules)) {
             return true; // No sub-rules to be tested.
         }

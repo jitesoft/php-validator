@@ -18,15 +18,11 @@ use Jitesoft\Validator\Rules\Factory;
  * @since 1.0.0
  */
 class Validator implements ValidatorInterface {
-
-    /** @var boolean */
-    protected $throw;
+    protected bool $throw;
+    protected ErrorBuilder $errors;
+    protected Factory $factory;
     /** @var array|RuleInterface[]  */
-    protected $rules;
-    /** @var ErrorBuilder */
-    protected $errors;
-    /** @var Factory */
-    protected $factory;
+    protected array $rules;
 
     /**
      * Validator constructor.
@@ -53,9 +49,9 @@ class Validator implements ValidatorInterface {
 
     /**
      * @param string $name Name of the rule.
-     * @return RuleInterface
+     * @return RuleInterface|null
      */
-    private function getRule(string $name) {
+    private function getRule(string $name): ?RuleInterface {
         foreach ($this->rules as &$rule) {
             if (is_string($rule)) {
                 $rule = $this->factory->create($rule); // Create a instance of the rule.
@@ -213,13 +209,8 @@ class Validator implements ValidatorInterface {
      */
     public function getAvailableRules(): array {
         return array_map(
-            function($rule) {
-                if (is_string($rule)) {
-                    return $rule;
-                } else {
-                    return $rule::NAME;
-                }
-            }, $this->rules
+            static fn($rule) => is_string($rule) ? $rule : $rule::NAME,
+            $this->rules
         );
     }
 

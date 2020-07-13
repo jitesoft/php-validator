@@ -13,9 +13,7 @@ namespace Jitesoft\Validator;
  * @internal
  */
 final class ErrorBuilder {
-
-    /** @var array */
-    private $errors;
+    private array $errors;
 
     /**
      * @internal
@@ -44,7 +42,7 @@ final class ErrorBuilder {
     /**
      * @return string
      */
-    public function __toString() {
+    public function __toString(): string {
         return json_encode($this->errors);
     }
 
@@ -54,7 +52,7 @@ final class ErrorBuilder {
      * @return array
      * @since 1.0.0
      */
-    public function toArray() {
+    public function toArray(): array {
         return $this->errors;
     }
 

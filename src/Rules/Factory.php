@@ -18,7 +18,7 @@ use Jitesoft\Validator\Contracts\RuleInterface;
 class Factory {
 
     /** @var array|RuleInterface[] */
-    protected $rules = [];
+    protected array $rules = [];
 
     /**
      * @internal

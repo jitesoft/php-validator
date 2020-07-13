@@ -41,7 +41,7 @@ class Length extends AbstractRule {
         $result = true;
         if (is_string($value)) {
             $length = mb_strlen($value);
-        } else if (is_array($value) || $value instanceof Countable) {
+        } else if (is_countable($value)) {
             $length = count($value);
         } else {
             $this->error = 'Can not measure length. Unknown value type.';
