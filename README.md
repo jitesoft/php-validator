@@ -1,15 +1,15 @@
 # Validator
 
-A package for validation of misc values.  
-  
+A package for validation of misc values.
+
 Observe that this is a pre-release, changes could be made to the base API before the first real release that breaks
 any implementation done.  
-If using the validation package before version 1.0.0, be sure to se the constraints on minor version, for example:  
-  
+If using the validation package before version 1.0.0, be sure to se the constraints on minor version, for example:
+
 `"jitesoft/validator": "0.1.*"`
 
 ## Usage
-  
+
 Install package:
 ```text
 $> composer require jitesoft/validator
@@ -106,8 +106,8 @@ validator constructor to true, and it will throw `ValidationException` instead o
 
 The idea of the validation structure is that each validation rule can have a set of sub-rules.
 The sub-rule in turn can have other sub-rule.  
-When implementing rules it's important to make sure that the validators don't create a never ending loop of self 
-references.  
+When implementing rules it's important to make sure that the validators don't create a never ending loop of self
+references.
 
 ```mermaid
 graph TD;
@@ -171,7 +171,7 @@ int-->max
 #### Validation calls
 
 Updated validation function call. It now takes rules as first argument and values as second.  
-The rules can either be a single string to test a single value, an array of strings testing an array of values or 
+The rules can either be a single string to test a single value, an array of strings testing an array of values or
 an associative array with Test names which defines rules and tests either a list of values or a matching assoc array of values.
 
 
