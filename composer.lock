@@ -8,27 +8,27 @@
     "packages": [
         {
             "name": "jitesoft/exceptions",
-            "version": "2.3.4",
+            "version": "2.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jitesoft/php-exceptions.git",
-                "reference": "96dec9e57837a80d9732cd0a5876a524c3b3bc82"
+                "reference": "34d193c0b7403a1321aa03e860c186d7563586c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jitesoft/php-exceptions/zipball/96dec9e57837a80d9732cd0a5876a524c3b3bc82",
-                "reference": "96dec9e57837a80d9732cd0a5876a524c3b3bc82",
+                "url": "https://api.github.com/repos/jitesoft/php-exceptions/zipball/34d193c0b7403a1321aa03e860c186d7563586c9",
+                "reference": "34d193c0b7403a1321aa03e860c186d7563586c9",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.4.2",
-                "psr/cache": "^1.0",
-                "psr/container": "^1.0",
+                "psr/cache": "^1.0|^2.0|^3.0",
+                "psr/container": "^1.0|^2.0",
                 "psr/http-client": "^1.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "9.3.*",
-                "squizlabs/php_codesniffer": "3.5.*"
+                "phpunit/phpunit": "^9.5",
+                "squizlabs/php_codesniffer": "^3.6"
             },
             "type": "library",
             "autoload": {
@@ -50,7 +50,29 @@
             "keywords": [
                 "exceptions"
             ],
-            "time": "2020-08-30T09:47:30+00:00"
+            "support": {
+                "issues": "https://github.com/jitesoft/php-exceptions/issues",
+                "source": "https://github.com/jitesoft/php-exceptions"
+            },
+            "funding": [
+                {
+                    "url": "https://sponsus.org/u/jitesoft",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/jitesoft",
+                    "type": "github"
+                },
+                {
+                    "url": "https://opencollective.com/jitesoft-open-source",
+                    "type": "open_collective"
+                },
+                {
+                    "url": "https://www.patreon.com/jitesoft",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2021-06-06T14:30:34+00:00"
         },
         {
             "name": "psr/cache",
@@ -96,29 +118,32 @@
                 "psr",
                 "psr-6"
             ],
+            "support": {
+                "source": "https://github.com/php-fig/cache/tree/master"
+            },
             "time": "2016-08-06T20:24:11+00:00"
         },
         {
             "name": "psr/container",
-            "version": "1.0.0",
+            "version": "2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/container.git",
-                "reference": "b7ce3b176482dbbc1245ebf52b181af44c2cf55f"
+                "reference": "2ae37329ee82f91efadc282cc2d527fd6065a5ef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/container/zipball/b7ce3b176482dbbc1245ebf52b181af44c2cf55f",
-                "reference": "b7ce3b176482dbbc1245ebf52b181af44c2cf55f",
+                "url": "https://api.github.com/repos/php-fig/container/zipball/2ae37329ee82f91efadc282cc2d527fd6065a5ef",
+                "reference": "2ae37329ee82f91efadc282cc2d527fd6065a5ef",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.0"
+                "php": ">=7.2.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0.x-dev"
+                    "dev-master": "2.0.x-dev"
                 }
             },
             "autoload": {
@@ -133,7 +158,7 @@
             "authors": [
                 {
                     "name": "PHP-FIG",
-                    "homepage": "http://www.php-fig.org/"
+                    "homepage": "https://www.php-fig.org/"
                 }
             ],
             "description": "Common Container Interface (PHP FIG PSR-11)",
@@ -145,7 +170,11 @@
                 "container-interop",
                 "psr"
             ],
-            "time": "2017-02-14T16:28:37+00:00"
+            "support": {
+                "issues": "https://github.com/php-fig/container/issues",
+                "source": "https://github.com/php-fig/container/tree/2.0.1"
+            },
+            "time": "2021-03-24T13:40:57+00:00"
         },
         {
             "name": "psr/http-client",
@@ -194,6 +223,9 @@
                 "psr",
                 "psr-18"
             ],
+            "support": {
+                "source": "https://github.com/php-fig/http-client/tree/master"
+            },
             "time": "2020-06-29T06:28:15+00:00"
         },
         {
@@ -244,6 +276,9 @@
                 "request",
                 "response"
             ],
+            "support": {
+                "source": "https://github.com/php-fig/http-message/tree/master"
+            },
             "time": "2016-08-06T14:39:51+00:00"
         }
     ],
@@ -2140,5 +2175,6 @@
         "ext-json": "*",
         "ext-mbstring": "*"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "2.0.0"
 }
