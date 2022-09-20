@@ -17,9 +17,7 @@ use Jitesoft\Validator\Tests\AbstractTestCase;
  * @version 1.0.0
  */
 class BooleanTest extends AbstractTestCase {
-
-    /** @var RuleInterface */
-    protected $rule;
+    protected RuleInterface $rule;
 
     protected function setUp(): void {
         parent::setUp();
@@ -27,17 +25,16 @@ class BooleanTest extends AbstractTestCase {
         $this->rule = (new Factory())->create(Boolean::class);
     }
 
-    public function testErrors() {
+    public function testErrors(): void {
         $this->rule->test('abc', [ 'boolean' ]);
         $this->assertEquals(['boolean' => 'Value was not a boolean value.'], $this->rule->popErrors());
     }
 
-    public function testTest() {
+    public function testTest(): void {
         $this->assertTrue($this->rule->test(true, [ 'boolean' ]));
         $this->assertTrue($this->rule->test(false, [ 'boolean' ]));
         $this->assertFalse($this->rule->test(new class {}, [ 'boolean' ]));
         $this->assertFalse($this->rule->test(null, [ 'boolean' ]));
         $this->assertFalse($this->rule->test("123", [ 'boolean' ]));
     }
-
 }

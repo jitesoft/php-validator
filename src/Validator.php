@@ -71,7 +71,7 @@ class Validator implements ValidatorInterface {
      * @param mixed $value Value to convert to array if not already array.
      * @return array
      */
-    private function asArray($value): array {
+    private function asArray(mixed $value): array {
         if (is_array($value)) {
             return $value;
         }
@@ -86,7 +86,7 @@ class Validator implements ValidatorInterface {
      * @return boolean
      * @throws ValidationException On validation error.
      */
-    private function falseOrThrow($message): bool {
+    private function falseOrThrow(string|array $message): bool {
         if ($this->throw) {
             $msg = '';
             if (is_array($message)) {
@@ -119,7 +119,8 @@ class Validator implements ValidatorInterface {
      * @throws ValidationException On validation error.
      * @since 1.0.0
      */
-    public function validate($rules, $data): bool {
+    // phpcs:disable Generic.Metrics.CyclomaticComplexity
+    public function validate(array|string $rules, mixed $data): bool {
         $this->errors = new ErrorBuilder();
         $rules        = $this->asArray($rules);
         $data         = $this->asArray($data);
@@ -193,7 +194,6 @@ class Validator implements ValidatorInterface {
                 }
 
                 $result = false;
-                continue;
             }
         }
 

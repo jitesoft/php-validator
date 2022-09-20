@@ -16,23 +16,21 @@ use Jitesoft\Validator\Tests\AbstractTestCase;
  * @version 1.0.0
  */
 class MaximumTest extends AbstractTestCase {
-
-    /** @var RuleInterface */
-    protected $rule;
+    protected RuleInterface $rule;
 
     protected function setUp(): void {
         parent::setUp();
         $this->rule = (new Factory())->create(Maximum::class);
     }
 
-    public function testGetError() {
+    public function testGetError(): void {
         $this->rule->test('asd', ['max' => 1]);
         $this->assertEquals(['max' => 'Value was not numeric.'], $this->rule->popErrors());
         $this->rule->test(5, ['max' => 4]);
         $this->assertEquals(['max' => 'Value was higher than maximum bounds.'], $this->rule->popErrors());
     }
 
-    public function testTest() {
+    public function testTest(): void {
         $this->assertTrue($this->rule->test(5, ['max' => 5]));
         $this->assertTrue($this->rule->test(4, ['max' => 5]));
         $this->assertTrue($this->rule->test(3, ['max' => 5]));

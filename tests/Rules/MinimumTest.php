@@ -17,9 +17,7 @@ use Jitesoft\Validator\Tests\AbstractTestCase;
  * @version 1.0.0
  */
 class MinimumTest extends AbstractTestCase {
-
-    /** @var RuleInterface */
-    protected $rule;
+    protected RuleInterface $rule;
 
     protected function setUp(): void {
         parent::setUp();
@@ -27,14 +25,14 @@ class MinimumTest extends AbstractTestCase {
         $this->rule = (new Factory())->create(Minimum::class);
     }
 
-    public function testGetError() {
+    public function testGetError(): void {
         $this->rule->test('abc', ['min' => 5]);
         $this->assertEquals(['min' => 'Value was not numeric.'], $this->rule->popErrors());
         $this->rule->test('4', ['min' => 5]);
         $this->assertEquals(['min' => 'Value was lower than minimum bounds.'], $this->rule->popErrors());
     }
 
-    public function testTest() {
+    public function testTest(): void {
         $this->assertTrue($this->rule->test(5, ['min' => 5]));
         $this->assertTrue($this->rule->test(6, ['min' => 5]));
         $this->assertTrue($this->rule->test(7, ['min' => 5]));

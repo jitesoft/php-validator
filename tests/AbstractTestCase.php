@@ -16,9 +16,7 @@ use PHPUnit\Framework\TestCase;
  * @version 1.0.0
  */
 abstract class AbstractTestCase extends TestCase {
-
-    /** @var Generator */
-    protected $faker;
+    protected Generator $faker;
 
     protected function setUp(): void {
         parent::setUp();
@@ -26,7 +24,7 @@ abstract class AbstractTestCase extends TestCase {
         $this->faker = Factory::create();
     }
 
-    public function arrayFill(int $size, callable $fillWith) {
+    public function arrayFill(int $size, callable $fillWith): array {
         $arr = [];
         for ($i=$size;$i-->0;) {
             $arr[] = $fillWith($i);
@@ -34,7 +32,7 @@ abstract class AbstractTestCase extends TestCase {
         return $arr;
     }
 
-    protected function assertArrayAll(array $array, callable $callable, string $message = '%s did not resolve to true.') {
+    protected function assertArrayAll(array $array, callable $callable, string $message = '%s did not resolve to true.'): void {
         foreach ($array as $value) {
             if (!$callable($value)) {
                 $this->fail(sprintf($message, $value));

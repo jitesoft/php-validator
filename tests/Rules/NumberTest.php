@@ -17,9 +17,7 @@ use Jitesoft\Validator\Tests\AbstractTestCase;
  * @version 1.0.0
  */
 class NumberTest extends AbstractTestCase {
-
-    /** @var RuleInterface */
-    protected $rule;
+    protected RuleInterface $rule;
 
     protected function setUp(): void {
         parent::setUp();
@@ -27,7 +25,7 @@ class NumberTest extends AbstractTestCase {
         $this->rule = (new Factory())->create(Number::class);
     }
 
-    public function testErrors() {
+    public function testErrors(): void {
         $this->rule->test('nan', ['number']);
         $this->assertEquals(['number' => 'Value was not a number.'], $this->rule->popErrors());
         $this->rule->test(123, ['number' => [ 'min' => 124 ]]);
@@ -36,7 +34,7 @@ class NumberTest extends AbstractTestCase {
         $this->assertEquals(['max' => 'Value was higher than maximum bounds.'], $this->rule->popErrors());
     }
 
-    public function testTest() {
+    public function testTest(): void {
         $this->assertTrue($this->rule->test(123, [
             'number' => [
                 'max' => 124,

@@ -15,9 +15,7 @@ use Jitesoft\Validator\Validator;
  * @version 1.0.0
  */
 class ValidatorTest extends AbstractTestCase {
-
-    /** @var Validator */
-    protected $validator;
+    protected Validator $validator;
 
     protected function setUp(): void {
         parent::setUp();
@@ -27,7 +25,7 @@ class ValidatorTest extends AbstractTestCase {
         ]);
     }
 
-    public function testValidationSizeMissMatch() {
+    public function testValidationSizeMissMatch(): void {
         $out = $this->validator->validate(['email', 'text'], ['123']);
         $this->assertFalse($out);
         $this->assertEquals([
@@ -37,13 +35,13 @@ class ValidatorTest extends AbstractTestCase {
         ], $this->validator->getErrors());
     }
 
-    public function testValidationFailNoRuleFound() {
+    public function testValidationFailNoRuleFound(): void {
         $out = $this->validator->validate(['email'], 'abc123');
         $this->assertFalse($out);
         $this->assertEquals([ 0 => [ 'email' => 'Validation rule email not found.' ] ], $this->validator->getErrors());
     }
 
-    public function testValidationFail() {
+    public function testValidationFail(): void {
         // Make sure that we fail it with both min and max, which should probably not be done like this in a real case!
         $out = $this->validator->validate([
             'First' => [
@@ -71,7 +69,7 @@ class ValidatorTest extends AbstractTestCase {
         ], $this->validator->getErrors());
     }
 
-    public function testValidationFailOnlyNumeric() {
+    public function testValidationFailOnlyNumeric(): void {
         $out = $this->validator->validate(
             [ 'text', 'text'],
             [ 'abc123', 123 ]
@@ -86,7 +84,7 @@ class ValidatorTest extends AbstractTestCase {
         );
     }
 
-    public function testValidationFailDepthAndNumeric() {
+    public function testValidationFailDepthAndNumeric(): void {
         $out = $this->validator->validate([
             'First' => [
                 'text'
@@ -110,7 +108,7 @@ class ValidatorTest extends AbstractTestCase {
         ], $this->validator->getErrors());
     }
 
-    public function testValidationSuccessOnlyNumeric() {
+    public function testValidationSuccessOnlyNumeric(): void {
         $out = $this->validator->validate(
             [ 'text', 'text'],
             [ 'abc123', 'abc123' ]
@@ -118,7 +116,7 @@ class ValidatorTest extends AbstractTestCase {
         $this->assertTrue($out);
     }
 
-    public function testValidationSuccessDepthAndNumeric() {
+    public function testValidationSuccessDepthAndNumeric(): void {
         $out = $this->validator->validate([
             'First' => [
                 'text'
@@ -136,7 +134,7 @@ class ValidatorTest extends AbstractTestCase {
         $this->assertTrue($out);
     }
 
-    public function testValidationSuccess() {
+    public function testValidationSuccess(): void {
         $out = $this->validator->validate([
             'First' => [
                 'text'
@@ -156,6 +154,4 @@ class ValidatorTest extends AbstractTestCase {
 
         $this->assertTrue($out);
     }
-
-
 }

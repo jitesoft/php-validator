@@ -19,25 +19,23 @@ use Jitesoft\Validator\Tests\AbstractTestCase;
  * Test for Jitesoft\Validator\Rules\Email.
  */
 class EmailTest extends AbstractTestCase {
-
-    /** @var RuleInterface */
-    protected $rule;
+    protected RuleInterface $rule;
 
     protected function setUp(): void {
         parent::setUp();
         $this->rule = (new Factory())->create(Email::class);
     }
 
-    public function testGetName() {
+    public function testGetName(): void {
         $this->assertEquals('email', $this->rule->getName());
     }
 
-    public function testGetError() {
+    public function testGetError(): void {
         $this->rule->test('abc', []);
         $this->assertEquals(['email' => 'abc is not a valid email address.'], $this->rule->popErrors());
     }
 
-    public function testTest() {
+    public function testTest(): void {
         $this->assertArrayAll(
             $this->arrayFill(50, function() {
                 return $this->faker->email;
@@ -57,7 +55,7 @@ class EmailTest extends AbstractTestCase {
         );
     }
 
-    public function testWithLengthMinMax() {
+    public function testWithLengthMinMax(): void {
         $this->assertTrue($this->rule->test('abc@test', [
             'email' => [
                 'length' => [

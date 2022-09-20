@@ -6,8 +6,11 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Jitesoft\Validator;
 
+use JsonException;
+
 /**
  * ErrorBuilder
+ *
  * @author Johannes Tegnér <johannes@jitesoft.com>
  * @version 1.0.0
  * @internal
@@ -41,9 +44,10 @@ final class ErrorBuilder {
 
     /**
      * @return string
+     * @throws JsonException
      */
     public function __toString(): string {
-        return json_encode($this->errors);
+        return json_encode($this->errors, JSON_THROW_ON_ERROR);
     }
 
     /**

@@ -56,6 +56,6 @@ interface RuleInterface {
      * @return boolean
      * @since 1.0.0
      */
-    public function test($value, array $rules, array $args = []): bool;
+    public function test(mixed $value, array $rules, array $args = []): bool;
 
 }

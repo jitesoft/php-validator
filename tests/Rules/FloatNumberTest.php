@@ -17,21 +17,19 @@ use Jitesoft\Validator\Tests\AbstractTestCase;
  * @version 1.0.0
  */
 class FloatNumberTest extends AbstractTestCase {
-
-    /** @var RuleInterface */
-    protected $rule;
+    protected RuleInterface $rule;
 
     protected function setUp(): void {
         parent::setUp();
         $this->rule = (new Factory())->create(FloatNumber::class);
     }
 
-    public function testErrors() {
+    public function testErrors(): void {
         $this->rule->test('adsdas', [ 'float' ]);
         $this->assertEquals(['float' => 'Value was no a float.'], $this->rule->popErrors());
     }
 
-    public function testTest() {
+    public function testTest(): void {
         $this->assertTrue($this->rule->test(5.1, ['float']));
         $this->assertTrue($this->rule->test(4.2, ['float' => ['min' => 3]]));
         $this->assertTrue($this->rule->test(7.9, ['float' => ['max' => 8]]));

@@ -17,21 +17,19 @@ use Jitesoft\Validator\Tests\AbstractTestCase;
  * @version 1.0.0
  */
 class LengthTest extends AbstractTestCase {
-
-    /** @var RuleInterface */
-    protected $rule;
+    protected RuleInterface $rule;
 
     public function setUp(): void {
         parent::setUp();
         $this->rule = (new Factory())->create(Length::class);
     }
 
-    public function testErrors() {
+    public function testErrors(): void {
         $this->rule->test(false, [ 'length' ]);
         $this->assertEquals(['length' => 'Can not measure length. Unknown value type.'], $this->rule->popErrors());
     }
 
-    public function testTest() {
+    public function testTest(): void {
         $this->assertTrue($this->rule->test([123, 321], [
             'length' => [
                 'min' => 1

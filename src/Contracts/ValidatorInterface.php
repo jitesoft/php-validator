@@ -22,7 +22,7 @@ interface ValidatorInterface {
      * @return boolean
      * @since 1.0.0
      */
-    public function validate($rules, $data): bool;
+    public function validate(string|array $rules, mixed $data): bool;
 
     /**
      * Get all available rules as an array.

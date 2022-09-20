@@ -32,11 +32,11 @@ class Email extends AbstractRule {
      * @return boolean
      * @since 1.0.0
      */
-    protected function testRule($value,
+    protected function testRule(mixed $value,
                                 array $rules = [],
                                 array $args = []): bool {
         $result = true;
-        if (mb_strpos($value, '@') === false) {
+        if (!str_contains($value, '@')) {
             $this->error = sprintf('%s is not a valid email address.', $value);
             $result      = false;
         }
