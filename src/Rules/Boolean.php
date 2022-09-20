@@ -19,7 +19,7 @@ class Boolean extends AbstractRule {
      * @return bool
      * @since 1.0.0
      */
-    protected function testRule($value, array $rules = [], array $args = []): bool {
+    protected function testRule(mixed $value, array $rules = [], array $args = []): bool {
         $result = is_bool($value);
         if (!$result) {
             $this->error = 'Value was not a boolean value.';

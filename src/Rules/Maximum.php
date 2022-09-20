@@ -30,7 +30,7 @@ class Maximum extends AbstractRule {
      * @return boolean
      * @since 1.0.0
      */
-    protected function testRule($value,
+    protected function testRule(mixed $value,
                                 array $rules = [],
                                 array $args = []): bool {
         if (!is_numeric($value)) {

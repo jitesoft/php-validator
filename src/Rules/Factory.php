@@ -33,7 +33,7 @@ class Factory {
      * @return RuleInterface
      * @since 1.0.0
      */
-    public function create(string $type) {
+    public function create(string $type): RuleInterface {
         if (array_key_exists($type, $this->rules)) {
             return $this->rules[$type];
         }
