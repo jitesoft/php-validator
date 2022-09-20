@@ -17,9 +17,7 @@ use Jitesoft\Validator\Tests\AbstractTestCase;
  * @version 1.0.0
  */
 class IntegerTest extends AbstractTestCase {
-
-    /** @var RuleInterface */
-    protected $rule;
+    protected RuleInterface $rule;
 
     protected function setUp(): void {
         parent::setUp();
@@ -27,12 +25,12 @@ class IntegerTest extends AbstractTestCase {
         $this->rule = (new Factory())->create(Integer::class);
     }
 
-    public function testErrors() {
+    public function testErrors(): void {
         $this->rule->test('abc', [ 'int' ]);
         $this->assertEquals(['int' => 'Value was not a integer.'], $this->rule->popErrors());
     }
 
-    public function testTest() {
+    public function testTest(): void {
 
         $this->assertTrue($this->rule->test(321, [
             'int' => [

@@ -16,9 +16,7 @@ use Jitesoft\Validator\Tests\AbstractTestCase;
  * @version 1.0.0
  */
 class TextTest extends AbstractTestCase {
-
-    /** @var RuleInterface */
-    protected $rule;
+    protected RuleInterface $rule;
 
     protected function setUp(): void {
         parent::setUp();
@@ -26,16 +24,16 @@ class TextTest extends AbstractTestCase {
         $this->rule = (new Factory())->create(Text::class);
     }
 
-    public function testGetName() {
+    public function testGetName(): void {
         $this->assertEquals('text', $this->rule->getName());
     }
 
-    public function testTest() {
+    public function testTest(): void {
         $this->assertTrue($this->rule->test('abc123', ['text']));
         $this->assertFalse($this->rule->test(123, ['text']));
     }
 
-    public function testTestWithLengthMinMax() {
+    public function testTestWithLengthMinMax(): void {
         $this->assertTrue($this->rule->test('abc', [
             'text' => [
                 'length' => [
