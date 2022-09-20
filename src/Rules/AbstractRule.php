@@ -16,8 +16,8 @@ use Jitesoft\Validator\Contracts\RuleInterface;
  * Base class for rules.
  */
 abstract class AbstractRule implements RuleInterface {
-    public const NAME           = '';
-    public const DESCRIPTION    = '';
+    public const NAME        = '';
+    public const DESCRIPTION = '';
 
     /** @var RuleInterface[] */
     protected array $rules      = [];
@@ -46,9 +46,10 @@ abstract class AbstractRule implements RuleInterface {
      * @return boolean
      * @since 1.0.0
      */
-    final public function test(mixed $value, array $rules, array $args = []): bool {
+    final public function test(mixed $value,
+                               array $rules,
+                               array $args = []): bool {
         $this->cleanup();
-
         return $this->testRule($value, $rules, $args);
     }
 
@@ -139,7 +140,9 @@ abstract class AbstractRule implements RuleInterface {
      * @return boolean
      * @since 1.0.0
      */
-    protected function testSubRules(mixed $value, array $rules, ...$arguments): bool {
+    protected function testSubRules(mixed $value,
+                                    array $rules,
+                                    ...$arguments): bool {
         if (!array_key_exists($this->getName(), $rules)) {
             return true; // No sub-rules to be tested.
         }

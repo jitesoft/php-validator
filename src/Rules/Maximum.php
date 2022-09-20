@@ -30,6 +30,7 @@ class Maximum extends AbstractRule {
      * @return boolean
      * @since 1.0.0
      */
+    // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter
     protected function testRule(mixed $value,
                                 array $rules = [],
                                 array $args = []): bool {

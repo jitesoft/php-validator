@@ -119,6 +119,7 @@ class Validator implements ValidatorInterface {
      * @throws ValidationException On validation error.
      * @since 1.0.0
      */
+    // phpcs:disable Generic.Metrics.CyclomaticComplexity
     public function validate(array|string $rules, mixed $data): bool {
         $this->errors = new ErrorBuilder();
         $rules        = $this->asArray($rules);
@@ -193,7 +194,6 @@ class Validator implements ValidatorInterface {
                 }
 
                 $result = false;
-                continue;
             }
         }
 
